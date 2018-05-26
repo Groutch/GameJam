@@ -18,6 +18,7 @@ var game = new Phaser.Game(650, 455, Phaser.AUTO, '', { preload: preload, create
 
 function preload() {
     game.load.image('ground','assets/platform.png');
+    game.load.image('window','assets/windowcollide.jpg');
     game.load.image('sky', 'assets/bedroom.jpg');
     game.load.image('table', 'assets/tablecollide.jpg');
     game.load.image('seat','assets/seatcollide.jpg');
@@ -59,13 +60,18 @@ function create() {
     //  This stops it from falling away when you jump on it
     ground.body.immovable = true;
 
-    //  Now let's create two ledges
+    //  On crée nos collisions 
     var ledge = platforms.create(90, 322, 'seat');
     ledge.body.immovable = true;
     ledge.body.collideWorldBounds = true;
     ledge.body.checkCollision.down = false;
 
     ledge = platforms.create(16, 274, 'table');
+    ledge.body.immovable = true;
+    ledge.body.collideWorldBounds = true;
+    ledge.body.checkCollision.down = false;
+
+    ledge = platforms.create(338, 193, 'window');
     ledge.body.immovable = true;
     ledge.body.collideWorldBounds = true;
     ledge.body.checkCollision.down = false;
