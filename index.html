@@ -21,6 +21,9 @@ function preload() {
     game.load.image('bed','assets/bedcollide.jpg');
     game.load.image('window','assets/windowcollide.png');
     game.load.image('sky', 'assets/bedroom.jpg');
+	game.load.image('computer','assets/computer.jpg');
+	game.load.image('lamp','assets/lamp-on.jpg');
+	game.load.image('curtains','assets/curtains.jpg')
     game.load.image('table', 'assets/tablecollide.jpg');
     game.load.image('seat','assets/seatcollide.jpg');
     game.load.image('star', 'assets/star.png');
@@ -38,13 +41,43 @@ var cursors;
 var stars;
 var score = 0;
 var scoreText;
-
+var itemacct;
+var ordi;
+var lamp;
+var curtains;
+var spaceKey;
 function create() {
+
     //  We're going to be using physics, so enable the Arcade Physics system
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
     //  A simple background for our game
     game.add.sprite(0, 0, 'sky');
+
+
+
+
+// var pour objets interactifs
+itemacct = game.add.group();
+itemacct.enableBody = true 
+// ordi
+ ordi = itemacct.create(80, 186, 'computer');
+    ordi.body.immovable = true;
+
+//lampe
+ lamp = itemacct.create(138, 81, 'lamp');
+    lamp.body.immovable = true;
+// fenetre
+ curtains = itemacct.create(320, 57, 'curtains');
+    curtains.body.immovable = true;
+
+
+
+
+
+
+
+
 
     //  The platforms group contains the ground and the 2 ledges we can jump on
     platforms = game.add.group();
@@ -88,6 +121,11 @@ function create() {
     //  We need to enable physics on the player
     game.physics.arcade.enable(player);
 
+
+	
+
+
+
     //  Player physics properties. Give the little guy a slight bounce.
     player.body.bounce.y = 0.2;
     player.body.gravity.y = 400;
@@ -121,6 +159,7 @@ function create() {
 
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
+	spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     
 }
 
@@ -132,6 +171,9 @@ function update() {
 
     //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
     game.physics.arcade.overlap(player, stars, collectStar, null, this);
+    game.physics.arcade.overlap(player, ordi, disapearordi, null, this);
+	game.physics.arcade.overlap(player, lamp, disapearlamp, null, this);
+	game.physics.arcade.overlap(player, curtains, disapearcurtains, null, this);
 
     //  Reset the players velocity (movement)
     player.body.velocity.x = 0;
@@ -176,6 +218,28 @@ function collectStar (player, star) {
     scoreText.text = 'Score: ' + score;
 
 }
+
+
+function disapearordi (player, ordi){
+
+if (spaceKey.isDown){
+	ordi.kill();
+	}
+}
+
+function disapearlamp (player, lamp){
+if (spaceKey.isDown){
+	lamp.kill();
+
+
+}}
+
+function disapearcurtains (player, curtains){
+if (spaceKey.isDown){
+	curtains.kill();
+
+
+}}
 
 </script>
 
