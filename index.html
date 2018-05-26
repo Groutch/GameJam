@@ -61,7 +61,7 @@ function create() {
 itemacct = game.add.group();
 itemacct.enableBody = true 
 // ordi
- ordi = itemacct.create(80, 186, 'computer');
+ ordi = itemacct.create(74, 182, 'computer');
     ordi.body.immovable = true;
 
 //lampe
@@ -136,7 +136,7 @@ itemacct.enableBody = true
     player.animations.add('right', [5, 6, 7, 8], 10, true);
 
     //  Finally some stars to collect
-    stars = game.add.group();
+   /* stars = game.add.group();
 
     //  We will enable physics for any star that is created in this group
     stars.enableBody = true;
@@ -153,7 +153,7 @@ itemacct.enableBody = true
         //  This just gives each star a slightly random bounce value
         star.body.bounce.y = 0.7 + Math.random() * 0.2;
     }
-
+	*/
     //  The score
     scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
 
