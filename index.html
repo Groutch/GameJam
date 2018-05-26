@@ -18,7 +18,8 @@ var game = new Phaser.Game(650, 455, Phaser.AUTO, '', { preload: preload, create
 
 function preload() {
     game.load.image('ground','assets/platform.png');
-    game.load.image('window','assets/windowcollide.jpg');
+    game.load.image('bed','assets/bedcollide.jpg');
+    game.load.image('window','assets/windowcollide.png');
     game.load.image('sky', 'assets/bedroom.jpg');
     game.load.image('table', 'assets/tablecollide.jpg');
     game.load.image('seat','assets/seatcollide.jpg');
@@ -72,6 +73,11 @@ function create() {
     ledge.body.checkCollision.down = false;
 
     ledge = platforms.create(338, 193, 'window');
+    ledge.body.immovable = true;
+    ledge.body.collideWorldBounds = true;
+    ledge.body.checkCollision.down = false;
+
+    ledge = platforms.create(294, 296, 'bed');
     ledge.body.immovable = true;
     ledge.body.collideWorldBounds = true;
     ledge.body.checkCollision.down = false;
