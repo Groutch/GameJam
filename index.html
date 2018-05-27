@@ -6,6 +6,7 @@
     <script src="//cdn.jsdelivr.net/phaser/2.2.2/phaser.min.js"></script>
     <style type="text/css">
         body {
+            text-align: center;
             margin: 0;
         }
     </style>
@@ -48,6 +49,7 @@ var spaceKey;
 var timer;
 var timerEvent;
 var myHealthBar;
+var scoreText;
 function create() {
     timer = game.time.create();
     //  We're going to be using physics, so enable the Arcade Physics system
